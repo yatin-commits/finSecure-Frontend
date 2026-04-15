@@ -1,51 +1,66 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const FinancePage = () => {
+function FinancePage() {
+  // Pretend this comes from login
   const userRole = 'FINANCE';
-
-  const GENERAL = ['Your Bank', 'Your Investments', 'Your Card','Your Reports'];
-
-  const FINANCE_OPERATIONS = ['Bank Operations', 'Investments Operations', 'Salary Processing','Reports Generations'];
 
   return (
     <div className="space-y-8 p-6">
-      <div className="rounded-lg border border-slate-300 bg-white p-5 shadow-sm">
-        <h1 className="mb-4 w-fit rounded-md border border-slate-300 bg-slate-50 px-4 py-2 text-lg font-semibold text-slate-900">
+
+      {/* General Operations */}
+      <div className="rounded-md border border-slate-300 bg-white p-5">
+        <h2 className="mb-4 text-lg font-semibold text-slate-900">
           General Operations
-        </h1>
+        </h2>
 
         <div className="flex flex-wrap gap-3">
-          {GENERAL.map((item) => (
-            <div
-              key={item}
-              className="rounded-md border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-900"
-            >
-              {item}
-            </div>
-          ))}
+          <Link
+            to="/finance/bank-management"
+            className="rounded-md border border-slate-300 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-900 hover:bg-slate-100"
+          >
+            Bank Management
+          </Link>
+          <Link
+            to="/finance/investment-management"
+            className="rounded-md border border-slate-300 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-900 hover:bg-slate-100"
+          >
+            Investment Management
+          </Link>
+          <Link
+            to="/finance/card-management"
+            className="rounded-md border border-slate-300 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-900 hover:bg-slate-100"
+          >
+            Card Management
+          </Link>
         </div>
       </div>
 
+      {/* Finance Operations (only for FINANCE role) */}
       {userRole === 'FINANCE' && (
-        <div className="rounded-lg border border-slate-300 bg-white p-5 shadow-sm">
-          <h1 className="mb-4 w-fit rounded-md border border-slate-300 bg-slate-50 px-4 py-2 text-lg font-semibold text-slate-900">
+        <div className="rounded-md border border-slate-300 bg-white p-5">
+          <h2 className="mb-4 text-lg font-semibold text-slate-900">
             Finance Operations
-          </h1>
+          </h2>
 
           <div className="flex flex-wrap gap-3">
-            {FINANCE_OPERATIONS.map((item) => (
-              <div
-                key={item}
-                className="rounded-md border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-900"
-              >
-                {item}
-              </div>
-            ))}
+            <Link
+              to="/finance/salary-processing"
+              className="rounded-md border border-slate-300 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-900 hover:bg-slate-100"
+            >
+              Salary Processing
+            </Link>
+            <Link
+              to="/finance/reports"
+              className="rounded-md border border-slate-300 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-900 hover:bg-slate-100"
+            >
+              Reports
+            </Link>
           </div>
         </div>
       )}
     </div>
   );
-};
+}
 
 export default FinancePage;
